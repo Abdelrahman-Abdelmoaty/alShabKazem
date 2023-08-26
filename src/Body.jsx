@@ -1,22 +1,50 @@
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { customersImages, foodImages } from "./images";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import menu from "../public/assets/menu.jpg";
-import { Map } from "@googlemaps/react-wrapper";
 
 const Body = () => {
+  const ref = useRef();
+  const handleScroll = () => {
+    const scroll = Math.abs(
+      ref.current.getBoundingClientRect().top - ref.current.offsetTop
+    );
+    const isSmallDevice = window.innerWidth <= 768;
+    if (isSmallDevice) {
+      if (scroll > 2000) {
+        window.removeEventListener("scroll", handleScroll);
+        for (let i = 0; i < ref.current.children.length; i++) {
+          setTimeout(() => {
+            ref.current.children[i].classList.add("animate");
+            ref.current.children[i].style.opacity = 1;
+          }, (i + 1) * 500);
+        }
+      }
+    } else {
+      if (scroll > 4100) {
+        window.removeEventListener("scroll", handleScroll);
+        for (let i = 0; i < ref.current.children.length; i++) {
+          setTimeout(() => {
+            ref.current.children[i].classList.add("animate");
+            ref.current.children[i].style.opacity = 1;
+          }, (i + 1) * 500);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section style={{ width: "100%" }}>
       <div>
         <div className="carousel">
-          {/* <FontAwesomeIcon icon={faArrowLeft} />
-          <FontAwesomeIcon icon={faArrowRight} /> */}
           {customersImages.map((img, index) => {
             return (
               <img
                 className={"carousel-image "}
-                key={crypto.randomUUID()}
+                key={index}
                 src={img.url}
                 alt=""
               />
@@ -31,20 +59,11 @@ const Body = () => {
         <span className="b">معاك</span>
       </p>
       <div className="container">
-        {foodImages.map((img) => {
-          return (
-            <img
-              key={crypto.randomUUID()}
-              src={img.url}
-              className="img"
-              alt=""
-            />
-          );
+        {foodImages.map((img, index) => {
+          return <img key={index} src={img.url} className="img" alt="" />;
         })}
       </div>
-      <p className="o" style={{ margin: "15px 0 0" }}>
-        الفرع الرئيسي
-      </p>
+      <p className="heading o">الفرع الرئيسي</p>
       <div className="map">
         <div className="mapdiv">
           <iframe
@@ -58,39 +77,45 @@ const Body = () => {
           ></iframe>
         </div>
       </div>
-      <p id="menu" className="b">
+      <p id="menu" className="heading b">
         المنيو
       </p>
       <img
-        style={
-          ({ padding: "0 100px" },
-          {
-            boxShadow:
-              "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-          })
-        }
+        className="menu"
+        style={{
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+        }}
         src={menu}
         alt=""
       />
-      <div id="adds">
-        <p className="b">عناوين الفروع</p>
+
+      <div id="adds" ref={ref}>
+        <p className="addtitle b">للطلبات</p>
+        <p className="add o">02 21246777</p>
+        <p className="add o">012 0547 4591</p>
+        <p className="add o">012 0547 4591</p>
+        <p className="addtitle b">عناوين الفروع</p>
         <p className="add o">
           ميامي - الأكاديمية - خلف بنزينة ميامى شارع ابوالنواس
         </p>
-        <p className="o add">
+        <p className="add o">
           سيدي بشر البحري - ش محمد نجيب - بجوار كارت احمر و بازار مكة
         </p>
-        <p className="o add">
+        <p className="add o">
           سيدي بشر الترام - امام الميدان و بجوار قهوة الشيخ مسكين
         </p>
-        <p className="o add">
+        <p className="add o">
           محرم بك - ش الرصافة بجوار مطعم كاركي و معهد خدمة اجتماعية
         </p>
       </div>
       <p id="c" className="b">
-        تصميم وتنفيذ{" "}
-        <a href="https://www.facebook.com/abdelrhman.abdelmoaty.1/">
-          <span className="o">عبدالرحمن</span>
+        Designed by{" "}
+        <a
+          target="_blank"
+          href="https://www.facebook.com/abdelrhman.abdelmoaty.1/"
+        >
+          <span className="o">Eng/Abdelrhman</span>
         </a>
       </p>
     </section>

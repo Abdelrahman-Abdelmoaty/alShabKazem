@@ -1,16 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rakkas&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  /* height: 10000px; */
   font-family: "Rakkas", cursive;
   text-align: center;
-  width: 100%;
-  /* font-family: "Lemonada", cursive; */
 }
 .background-image {
   margin-top: -150px;
@@ -24,33 +22,37 @@ body {
 .links {
   position: absolute;
   right: 8%;
-  bottom: 10%;
-  z-index: 5;
+  bottom: 15%;
 }
 .link {
   margin: 0 50px;
-  font-size: 4.5rem;
+  font-size: 6.5rem;
   text-decoration: none;
-  /* color: rgb(240, 125, 0); */
-  /* animation: big 1.5s infinite; */
   color: rgb(240, 125, 0);
-}
-.link:hover {
-  animation: none;
-  color: rgb(13, 150, 169);
-  /* font-size: 5rem; */
   transition: 1s;
 }
-@keyframes big {
+.link:hover {
+  color: rgb(13, 150, 169);
+}
+.cta {
+  position: absolute;
+  right: 17%;
+  font-size: 5rem;
+  bottom: 4%;
+  color: rgb(13, 150, 169);
+  animation: changeColor 0.5s infinite;
+  transform: rotate(-5deg);
+}
+.cta:hover {
+  cursor: pointer;
+  animation: none;
+}
+@keyframes changeColor {
   0% {
-    font-size: 4.5rem;
-  }
-
-  50% {
-    font-size: 4.7rem;
+    color: rgb(240, 125, 0);
   }
   100% {
-    font-size: 4.5rem;
+    color: rgb(13, 150, 169);
   }
 }
 .carousel {
@@ -61,18 +63,15 @@ body {
 .carousel-image {
   width: 900px;
   height: 600px;
-  animation: move 20s infinite;
+  animation: move 15s infinite;
 }
 @keyframes move {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(500%);
+    transform: translateX(2000px);
   }
-}
-p {
-  font-size: 5rem;
 }
 .o {
   color: rgb(240, 125, 0);
@@ -88,7 +87,6 @@ p {
 }
 .img {
   width: 20%;
-  /* border: solid rgb(13, 150, 169); */
   transition: 1s;
 }
 .img:hover {
@@ -103,27 +101,107 @@ p {
 .mapdiv {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 60%;
-  height: 600px;
+  height: 55rem;
   margin: 15px;
 }
 .map iframe {
   width: 100%;
   height: 100%;
 }
+
 #adds {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 0 15%;
+  padding: 0 20%;
+  position: relative;
+  /* top: 100px; */
+}
+.addtitle {
+  font-size: 5.5em;
+  opacity: 0;
+  position: relative;
+  top: 100px;
 }
 .add {
-  font-size: 4rem;
+  top: 100px;
+  position: relative;
+  opacity: 0;
+  font-size: 3rem;
+}
+
+.animate {
+  transition: 1s;
+  transform: translateY(-100px);
+  opacity: 1;
+}
+
+.heading {
+  font-size: 4.5rem;
+  margin: 20px 0;
+}
+.slogan {
+  z-index: 2;
+  margin: 0;
+  font-size: 7rem;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .mapdiv {
+    height: 400px;
+    width: 95%;
+  }
+  .background-image {
+    background-image: url("../public/assets/logo.jpg");
+    height: 50vh;
+    margin: 0;
+  }
+  .link {
+    font-size: 2.5rem;
+    margin: 20px;
+  }
+  .links {
+    bottom: -20%;
+    left: 5%;
+  }
+  .carousel {
+    margin-top: 200px;
+  }
+  .cta {
+    font-size: 3rem;
+    bottom: -40%;
+    right: 25%;
+  }
+  #adds {
+    padding: 5%;
+  }
+  .heading {
+    font-size: 2.8rem;
+  }
+  .addtitle {
+    font-size: 3.8rem;
+  }
+  .add {
+    margin: 10px 0;
+    font-size: 2rem;
+  }
+  .img {
+    width: 50%;
+  }
+  .menu {
+    width: 100%;
+  }
+  .slogan {
+    line-height: 60px;
+    margin: 10px;
+  }
 }
 #c {
   font-family: "Lemonada", cursive;
   margin-top: 50px;
-  font-size: 1.1rem;
+  margin-bottom: -20px;
+  font-size: 1rem;
 }
 #c:hover {
   color: rgb(240, 125, 0);

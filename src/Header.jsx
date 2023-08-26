@@ -19,6 +19,9 @@ const Header = () => {
             فيسبوك
           </a>
         </div>
+        <a className="cta" href="#adds">
+          اطلب دلوقتي
+        </a>
       </div>
     </header>
   );
